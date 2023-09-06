@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="./style/main.css"/>
+    <link rel="stylesheet" href="index.css"/>
+</head>
+<body></body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <div class="menu-toggle">
+                <div class="hamburger">
+                    <span></span>
+                </div>
+            </div>
+            <h3>Menu</h3>
+            <nav class="menu">
+                <a href="#" class="menu-item is-active">Overview</a>
+                <a href="./stats/stats.html" class="menu-item">Statistics</a>
+                <a href="./events/events.html" class="menu-item">My Events</a>
+            </nav>
+        </aside>
+        <div class="sidebar-background"></div>
+
+        <main class="content">
+            <div class="profile-container">
+                <img class="profile-picture" src="./style/profile.jpg" alt="Profile Picture">
+                <p class="profile-name">Your Name</p>
+                <p class="profile-info" id="weight">Weight: 70 kg</p>
+                <p class="profile-info" id="age">Age: 25</p>
+                <p class="profile-info" id="belt">Belt: Black Belt</p>
+                <div class="win-lose-container">
+                    <p class="win-lose-text">Win/Lose</p>
+                    <div class="win-lose-bar">
+                        <div id="win-bar" class="win-bar" style="width: 100%; background-color: green;"></div>
+                        <div id="lose-bar" class="lose-bar" style="width: 100%; background-color: red;"></div>
+                    </div>
+                    <p class="profile-info" id="win">Win: 0</p>
+                    <p class="profile-info" id="loss">Loss: 0</p>
+                </div>
+
+                <div class="recent-matches">
+                    <h3>Most Recent Matches</h3>
+                    <table id="myTable">
+                        <tr>
+                            <th>Event</th>
+                            <th>Weight</th>
+                            <th>Color</th>
+                            <th>Opponent</th>
+                            <th>Result</th>
+                            <th>Date</th>
+                        </tr>
+                        <!--<tr>
+                            <td>Competition 1</td>
+                            <td>70 kg</td>
+                            <td>Opponent 1</td>
+                            <td>Win</td>
+                            <td>2023-07-15</td>
+                        </tr>
+                        <tr>
+                            <td>Competition 1</td>
+                            <td>70 kg</td>
+                            <td>Opponent 2</td>
+                            <td>Loss</td>
+                            <td>2023-07-10</td>
+                        </tr>
+                        <tr>
+                            <td>Competition 1</td>
+                            <td>70 kg</td>
+                            <td>Opponent 3</td>
+                            <td>Win</td>
+                            <td>2023-07-05</td>
+                        </tr>-->
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <script src="./style/main.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>

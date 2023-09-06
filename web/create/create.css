@@ -1,0 +1,81 @@
+.form-container {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 400px;
+  padding: 20px;
+  background-color: #473535;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: aliceblue;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #00681a;
+  color: aliceblue;
+}
+
+::placeholder {
+  color: #ccc2c2; /* Change this to your desired placeholder color */
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+button.green-button {
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  color: aliceblue;
+  font-weight: bold;
+}
+
+button.green-button:hover {
+  background-color: darkgreen;
+}
+
+.cancel-button {
+  background-color: #ccc; /* Change this to your preferred color */
+  color: #333; /* Change this to your preferred text color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px; /* Add some spacing between Save and Cancel buttons */
+  font-weight: bold;
+}
+
+.cancel-button:hover {
+  background-color: #999; /* Change this to your preferred hover color */
+}
+a {
+  text-decoration: none; /* Remove the underline from links */
+}

@@ -1,0 +1,81 @@
+.profile-container {
+  text-align: center;
+}
+
+
+.profile-picture {
+  width: 150px; /* Adjust the size of the profile picture as needed */
+  height: 150px; /* Adjust the size of the profile picture as needed */
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profile-name {
+  font-size: 28px;
+  font-weight: bold;
+  text-transform: uppercase; /* Convert to uppercase */
+  font-family: 'Arial', sans-serif; /* Use a new font (you can replace 'Arial' with your desired font) */
+  margin-top: 10px;
+}
+
+.profile-info {
+  font-size: 18px;
+  text-transform: uppercase; /* Convert to uppercase */
+  font-family: 'Arial', sans-serif; /* Use the same font as for the name */
+  margin-top: 5px;
+}
+
+.win-lose-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.win-lose-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.win-lose-bar {
+  display: flex;
+  height: 20px;
+  width: 200px; /* Optional: You can set a default width here */
+  border: 1px solid #333;
+  margin: 10px auto;
+}
+
+
+
+.recent-matches {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.recent-matches h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: white; /* Set the text color to white */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background-color: #333; /* Set the dark gray/black background */
+  color: white; /* Set the text color to white */
+}
+
+th, td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #444; /* Darken the table borders */
+}
+
+th {
+  background-color: #555; /* Set the header background color */
+}
+
+tr:hover {
+  background-color: #555; /* Set the hover background color */
+  cursor: pointer;
+}

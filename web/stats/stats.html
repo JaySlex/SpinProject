@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <link rel="stylesheet" href="../style/main.css"/>
+    <link rel="stylesheet" href="stats.css"/>
+</head>
+<body></body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <div class="menu-toggle">
+                <div class="hamburger">
+                    <span></span>
+                </div>
+            </div>
+            <h3>Menu</h3>
+            <nav class="menu">
+                <a href="../index.html" class="menu-item">Overview</a>
+                <a href="#" class="menu-item is-active">Statistics</a>
+                <a href="../events/events.html" class="menu-item">My Events</a>
+            </nav>
+        </aside>
+        <div class="sidebar-background"></div>
+        
+        <main class="content">
+            <div class="statistics-header">
+                <h1>Statistics</h1>
+            </div>
+            <div class="chart-container">
+                <canvas id="winLossWeightChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="winLossAgeChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="winLossBeltChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="winLossOverTimeChart"></canvas>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../style/main.js"></script>
+    <script src="stats.js"></script>
+</body>
+</html>

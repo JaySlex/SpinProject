@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="../style/main.css"/>
+    <link rel="stylesheet" href="events.css"/>
+</head>
+<body></body>
+    <div class="app">
+
+        <aside class="sidebar">
+            <div class="menu-toggle">
+                <div class="hamburger">
+                    <span></span>
+                </div>
+            </div>
+            <h3>Menu</h3>
+            <nav class="menu">
+                <a href="../index.html" class="menu-item">Overview</a>
+                <a href="../stats/stats.html" class="menu-item">Statistics</a>
+                <a href="#" class="menu-item  is-active">My Events</a>
+            </nav>
+        </aside>
+        <div class="sidebar-background"></div>
+
+        <main class="content">
+            <div class="button-container">
+                <a href="../create/create.html">
+                  <button class="green-button">New Match</button>
+                </a>
+            </div>
+            <div class="recent-matches">
+                <h3>Match History</h3>
+                <table id="myTable">
+                    
+                    <tr>
+                        <th>Event</th>
+                        <th>Weight</th>
+                        <th>Color</th>
+                        <th>Opponent</th>
+                        <th>Result</th>
+                        <th>Date</th>
+                    </tr>
+                    <!--<tr>
+                        <td>Competition 1</td>
+                        <td>70 kg</td>
+                        <td>Opponent 1</td>
+                        <td>Win</td>
+                        <td>2023-07-15</td>
+                    </tr>
+                    <tr>
+                        <td>Competition 1</td>
+                        <td>70 kg</td>
+                        <td>Opponent 2</td>
+                        <td>Loss</td>
+                        <td>2023-07-10</td>
+                    </tr>
+                    <tr>
+                        <td>Competition 1</td>
+                        <td>70 kg</td>
+                        <td>Opponent 3</td>
+                        <td>Win</td>
+                        <td>2023-07-05</td>
+                    </tr>-->
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="../style/main.js"></script>
+    <script src="events.js"></script>
+</body>
+</html>

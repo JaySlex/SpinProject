@@ -1,0 +1,17 @@
+/* Your existing CSS styles */
+
+.statistics-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.statistics-header h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.chart-container {
+  max-width: 600px; /* Set the maximum width of the chart container */
+  margin: 0 auto; /* Center the chart container horizontally */
+  margin-bottom: 20px;
+}
