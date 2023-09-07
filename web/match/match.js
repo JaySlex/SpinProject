@@ -3,18 +3,22 @@ let rows = table.getElementsByTagName("tr");
 const addButton = document.getElementById("new-round");
 
 document.addEventListener("DOMContentLoaded", init);
-const base = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
+const base = "https://script.google.com/macros/s/AKfycbxvREk2z-T40i2JYUhA2UnZWNqHc6udrFR1X0Mi_o2dsrK7sM4bUi3mgrBtlBj4FCwR/exec";
 
-const getInfo = "?function=getmatch&id=4";
+const getInfo = "?function=getmatch&id=";
+const addround = "?function=addround&id=";
 
 function init()
 {
-  fetch(base+getInfo)
+  var urlParams = new URLSearchParams(window.location.search);
+  var id = urlParams.get("id");
+
+  fetch(base+getInfo+id)
     .then(res => res.text())
     .then(rep=>{
 
         const obj = JSON.parse(rep);
-console.log(obj);
+        console.log(obj);
         const fightTitle = document.getElementById("fightid");
         fightTitle.textContent = "Fight #"+(obj[0].id-3);
 
@@ -38,33 +42,46 @@ console.log(obj);
 
         const date = document.getElementById("date");
         date.textContent = formatDateToYYYYMMDD(obj[0]["date"]);
+
+        if(obj[0]["round"]){
+          populateTable(JSON.parse(obj[0]["round"]));
+        }
     })
   edit();
-}
-addButton.addEventListener("click", function() {
+  addButton.addEventListener("click", function() {
     // Clone the last row to create a new row
-    const lastRow = table.querySelector("tr:last-child");
-    const newRow = lastRow.cloneNode(true);
-
-    // Increment the ID of the new row
-    const lastRowId = lastRow.getAttribute("id");
-    const newRowId = "r-" + rows.length;
-    newRow.setAttribute("id", newRowId);
-
-    // Clear the content of the new row's editable cell
-    const editableCell = newRow.querySelector(".editable");
-    editableCell.textContent = "0-0";
-    
-    const neditableCell = newRow.querySelector(".non-editable");
-    neditableCell.textContent = "Round " + rows.length;
-    // Append the new row to the table
-    table.appendChild(newRow);
-    rows = table.getElementsByTagName("tr");
-    edit();
+    fetch(base+addround+id, { method: 'POST'})
+    .then(res => res.text())
+    .then(rep=>{
+      window.location.reload();
+    });
 });
+}
+
+function populateTable(data)
+{
+  
+  for(let i = 0; i < data.length; i++)
+  {
+    const item = data[i];
+    console.log(item);
+    const row = table.insertRow(-1);
+    row.id = i;
+
+    const cellTitle = row.insertCell();
+    cellTitle.innerHTML = "Round "+(i+1);
+
+    const cell = row.insertCell();
+    cell.innerHTML = item;
+    cell.setAttribute("contenteditable", "true");
+    edit();
+  }
+  
+}
 
 function edit()
 {
+  rows = table.getElementsByTagName("tr");
     for (let i = 0; i < rows.length; i++) {
 
         const row = rows[i];

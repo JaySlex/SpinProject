@@ -11,6 +11,9 @@ function populateTable(data) {
         const row = table.insertRow(-1);
         Object.keys(item).forEach(key => {
             row.id = item.id;
+            row.addEventListener("click", function () {
+                window.location.href = "../match/match.html?id="+item.id;
+            });
             if (key !== "id") { // Exclude the "id" property
                 const cell = row.insertCell();
                 if (key === "date") {
