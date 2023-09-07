@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overview</title>
+    <title>Settings</title>
     <link rel="stylesheet" href="../style/main.css"/>
-    <link rel="stylesheet" href="create.css"/>
+    <link rel="stylesheet" href="settings.css"/>
 </head>
 <body></body>
     <div class="app">
@@ -21,28 +21,27 @@
             <nav class="menu">
                 <a href="../index.html" class="menu-item">Overview</a>
                 <a href="../stats/stats.html" class="menu-item">Statistics</a>
-                <a href="../events/events.html" class="menu-item is-active">My Events</a>
-                <a href="../settings/settings.html" class="menu-item">Settings</a>
+                <a href="../events/events.html" class="menu-item">My Events</a>
+                <a href="#" class="menu-item is-active">Settings</a>
             </nav>
         </aside>
         <div class="sidebar-background"></div>
 
         <main class="content">
+            
             <div class="form-container">
-                <h3>Create a New Match</h3>
+                <h3>Settings</h3>
                 
                 <form target="../events/events.html" method="post" action="https://script.google.com/macros/s/AKfycbwYbC9O1Gjm9sjTtqLX7Gvkva_DEMt4ESg_cMUxkxW8cgWUR3uHcdXUNOfrvvbffoZd/exec">
-                    <label for="event-name">Event Name:</label>
-                    <input type="text" id="event-name" name="event-name" required>
+                    <label for="username">Name:</label>
+                    <input type="text" id="username" placeholder="Enter your full name" name="username" required>
                     
                     <label for="weight">Weight (kg):</label>
-                    <input type="number" id="weight" name="weight" required>
+                    <input type="number" id="weight" placeholder="Enter your current weight" name="weight" required>
 
-                    <label for="color">Color:</label>
-                    <select id="color" name="color" required>
-                        <option value="Chong">Chong</option>
-                        <option value="Hong">Hong</option>
-                    </select>
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" placeholder="Enter your current age" name="age" required>
+ 
                     <label for="belt">Belt:</label>
                     <select id="belt" name="belt" required>
                         <option value="Black">Black</option>
@@ -53,20 +52,11 @@
                         <option value="White">White</option>
                     </select>
 
-                    <label for="opponent">Opponent:</label>
-                    <input type="text" id="opponent" name="opponent" required>
-                    
-                    <label for="result">Result:</label>
-                    <select id="result" name="result" required>
-                        <option value="Win">Win</option>
-                        <option value="Loss">Loss</option>
-                    </select>
-                  
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" required>
+                    <label for="profile-picture">Profile Picture (link):</label>
+                    <input type="text" id="profile-picture" placeholder="ex : https://.../image.png" name="profile-picture">
 
                     <div class="button-container">
-                        <a href="../events/events.html">
+                        <a href="../index.html">
                             <button type="button" class="cancel-button">Cancel</button>
                         </a>
                         <button type="submit" class="green-button">Save</button>
@@ -77,6 +67,7 @@
         </main>
     </div>
     <script src="../style/main.js"></script>
-    <script src="create.js"></script>
+    <script src="settings.js"></script>
+
 </body>
 </html>

@@ -1,3 +1,38 @@
+const basedURL = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
+const getevents = "?function=getevents";
+
+document.addEventListener("DOMContentLoaded", init);
+
+const weightLabels = [];
+const weightWinRate = [];
+
+function init()
+{
+    fetch(basedURL+getevents)
+    .then(res => res.text())
+    .then(rep=>
+    {
+      const events = JSON.parse(rep);
+      const winLostWeight = [];
+      events.forEach(element => {
+
+        winLostWeight.push(element["result"]);
+        
+        weightLabels.push(element["weight"]);
+      });
+      weightLabels.sort((a, b) => a - b);
+      
+      
+      generateGraph();
+
+    });
+
+}
+
+
+
+
+
 // Function to generate random data (for demonstration purposes)
 function generateRandomData(length) {
   const data = [];
@@ -8,15 +43,13 @@ function generateRandomData(length) {
 }
 
 // Initialize line charts when the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+function generateGraph() {
   const winLossWeightChartCtx = document.getElementById('winLossWeightChart').getContext('2d');
-  const winLossAgeChartCtx = document.getElementById('winLossAgeChart').getContext('2d');
   const winLossBeltChartCtx = document.getElementById('winLossBeltChart').getContext('2d');
   const winLossOverTimeChartCtx = document.getElementById('winLossOverTimeChart').getContext('2d');
 
   // Generate random data for demonstration purposes
   const winLossWeightData = generateRandomData(4);
-  const winLossAgeData = generateRandomData(10);
   const winLossBeltData = generateRandomData(5);
   const winLossOverTimeData = generateRandomData(12);
 
@@ -24,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
   new Chart(winLossWeightChartCtx, {
     type: 'line',
     data: {
-      labels: ['60kg', '62kg', '71kg', '72kg'],
+      labels: weightLabels,
       datasets: [{
         label: 'Win/Loss per Weight',
         data: winLossWeightData,
@@ -54,39 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Line chart for Win/Loss per Age
-  new Chart(winLossAgeChartCtx, {
-    type: 'line',
-    data: {
-      labels: ['18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
-      datasets: [{
-        label: 'Win/Loss per Age',
-        data: winLossAgeData,
-        borderColor: 'green',
-        borderWidth: 2,
-        fill: true
-      }]
-    },
-    options: {
-      // Customize the chart options here (e.g., title, axis labels, etc.)
-      scales: {
-        y: {
-          beginAtZero: false // Start the y-axis from zero
-        }
-      },
-      plugins: {
-        legend: {
-          display: true,
-          position: 'top',
-          labels: {
-            font: {
-              size: 14
-            }
-          }
-        }
-      }
-    }
-  });
+  
 
   // Line chart for Win/Loss per Belt
   new Chart(winLossBeltChartCtx, {
@@ -156,4 +157,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-});
+};
+
+
+function CalculateWinRate(win, lost)
+{
+  return  win / (win + lost);
+}

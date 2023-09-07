@@ -1,4 +1,4 @@
-const basedURL = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
+const basedURL = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
 const getevents = "?function=getevents";
 
 document.addEventListener("DOMContentLoaded", init);

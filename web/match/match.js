@@ -1,26 +1,30 @@
 const table = document.querySelector("table");
 let rows = table.getElementsByTagName("tr");
 const addButton = document.getElementById("new-round");
+const deleteMatchButton = document.getElementById("delete-match");
 
 document.addEventListener("DOMContentLoaded", init);
-const base = "https://script.google.com/macros/s/AKfycbxvREk2z-T40i2JYUhA2UnZWNqHc6udrFR1X0Mi_o2dsrK7sM4bUi3mgrBtlBj4FCwR/exec";
+const base = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
 
-const getInfo = "?function=getmatch&id=";
-const addround = "?function=addround&id=";
+var urlParams = new URLSearchParams(window.location.search);
+var id = urlParams.get("id");
+
+const getInfo = `?function=getmatch&id=${id}`;
+const addround = `?function=addround&id=${id}`;
+const modifyround = `?function=modifyround&id=${id}`;
+const deletematch = `?function=deletematch&id=${id}`;
 
 function init()
 {
-  var urlParams = new URLSearchParams(window.location.search);
-  var id = urlParams.get("id");
 
-  fetch(base+getInfo+id)
+  fetch(base+getInfo)
     .then(res => res.text())
     .then(rep=>{
 
         const obj = JSON.parse(rep);
         console.log(obj);
         const fightTitle = document.getElementById("fightid");
-        fightTitle.textContent = "Fight #"+(obj[0].id-3);
+        fightTitle.textContent = "Match #"+(obj[0].id-3);
 
         const eventName = document.getElementById("event-name");
         eventName.textContent = obj[0]["name"];
@@ -46,16 +50,28 @@ function init()
         if(obj[0]["round"]){
           populateTable(JSON.parse(obj[0]["round"]));
         }
-    })
-  edit();
+  });
+
   addButton.addEventListener("click", function() {
     // Clone the last row to create a new row
-    fetch(base+addround+id, { method: 'POST'})
+    fetch(base+addround, { method: 'POST'})
     .then(res => res.text())
     .then(rep=>{
       window.location.reload();
     });
-});
+  });
+
+  deleteMatchButton.addEventListener("click", function() {
+    // Clone the last row to create a new row
+    fetch(base+deletematch, { method: 'POST'})
+    .then(res => res.text())
+    .then(rep=>{
+    }).catch(f=>{
+      window.location.href = "../events/events.html";
+    }).finally(e=>{
+      window.location.href = "../events/events.html";
+    });
+  });
 }
 
 function populateTable(data)
@@ -64,7 +80,7 @@ function populateTable(data)
   for(let i = 0; i < data.length; i++)
   {
     const item = data[i];
-    console.log(item);
+
     const row = table.insertRow(-1);
     row.id = i;
 
@@ -74,14 +90,16 @@ function populateTable(data)
     const cell = row.insertCell();
     cell.innerHTML = item;
     cell.setAttribute("contenteditable", "true");
-    edit();
+    cell.className = "editable";
+    
   }
-  
+  edit();
 }
 
 function edit()
 {
-  rows = table.getElementsByTagName("tr");
+    rows = table.getElementsByTagName("tr");
+    
     for (let i = 0; i < rows.length; i++) {
 
         const row = rows[i];
@@ -90,14 +108,24 @@ function edit()
         
         editableCells.forEach(function(cell) {
           cell.setAttribute("contenteditable", "true");
-    
-          cell.addEventListener("input", function() {
+          
+          cell.addEventListener("blur", function() {
             // Handle the content change here for the editable cells
             console.log("Cell content changed:", cell.textContent);
             console.log("Row ID:", row.id);
+            changeCell(row.id, cell.textContent);
           });
         });
     }
+}
+
+function changeCell(id, cellContent)
+{
+  fetch(base+modifyround+ `&round=${id}&info=${cellContent}`, { method: 'POST'})
+  .then(res => res.text())
+  .then(rep=>{
+    window.location.reload();
+  });
 }
 
 function formatDateToYYYYMMDD(dateString) {

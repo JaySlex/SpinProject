@@ -1,4 +1,4 @@
-const base = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
+const base = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
 
 const getInfo = "?function=getinfo";
 const getEvents = "?function=getevents";
@@ -40,6 +40,11 @@ function init()
 
         document.getElementById("win-bar").style.width = winPercent+"%";
         document.getElementById("lose-bar").style.width = 100-winPercent+"%";
+        
+        if(obj["profile-picture"])
+        {
+            document.getElementById("profile-picture").src = obj["profile-picture"];
+        }
     })
 
     fetch(base+ getEvents)
@@ -64,6 +69,9 @@ function populateTable(data) {
             const row = table.insertRow(-1);
             Object.keys(item).forEach(key => {
                 row.id = item.id;
+                row.addEventListener("click", function () {
+                    window.location.href = "./match/match.html?id="+item.id;
+                });
                 if (key !== "id") { // Exclude the "id" property
                     const cell = row.insertCell();
                     if (key === "date") {

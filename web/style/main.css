@@ -1,7 +1,7 @@
 :root {
-	--backgroundcolor: #363636;
-    --slidecolor: #242f40;
-    --yellow : #cca43b;
+	--backgroundcolor: #272626;
+    --slidecolor: #030303;
+    --yellow : #00ac00;
     --yellowdarker : #ad8b32;
 }
 
@@ -38,7 +38,7 @@
 }
 .sidebar h3
 {
-    color: #707793;
+    color: #ffffff;
     font-size: 0.75rem;
     text-transform: uppercase;
     margin-bottom: 1rem;
