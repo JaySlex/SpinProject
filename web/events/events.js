@@ -27,7 +27,7 @@ function formatDateToYYYYMMDD(dateString) {
 
 function init()
 {
-    fetch('https://script.google.com/macros/s/AKfycbx4Svc87jYI81AVZIrlZw5XlIk_e4CPZUJ2bpdDnBmbVzgoyFoiC-Bqk0i52qz8ebfL/exec?function=getevents')
+    fetch('https://script.google.com/macros/s/AKfycbw3ab-fNde3cjbjBUv9GQah43TfsZGChpvHEV8DzVNQ3m4OTWROVN6Ho7V4AJrFBz2v/exec?function=getevents')
     .then(res => res.text())
     .then(rep=>{
 
