@@ -2,8 +2,45 @@ const table = document.querySelector("table");
 let rows = table.getElementsByTagName("tr");
 const addButton = document.getElementById("new-round");
 
-edit();
+document.addEventListener("DOMContentLoaded", init);
+const base = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
 
+const getInfo = "?function=getmatch&id=4";
+
+function init()
+{
+  fetch(base+getInfo)
+    .then(res => res.text())
+    .then(rep=>{
+
+        const obj = JSON.parse(rep);
+console.log(obj);
+        const fightTitle = document.getElementById("fightid");
+        fightTitle.textContent = "Fight #"+(obj[0].id-3);
+
+        const eventName = document.getElementById("event-name");
+        eventName.textContent = obj[0]["name"];
+
+        const weight = document.getElementById("weight");
+        weight.textContent = obj[0]["weight"];
+
+        const color = document.getElementById("color");
+        color.textContent = obj[0]["color"];
+
+        const belt = document.getElementById("belt");
+        belt.textContent = obj[0]["belt"];
+
+        const opponent = document.getElementById("opponent");
+        opponent.textContent = obj[0]["opponent"];
+
+        const result = document.getElementById("result");
+        result.textContent = obj[0]["result"];
+
+        const date = document.getElementById("date");
+        date.textContent = formatDateToYYYYMMDD(obj[0]["date"]);
+    })
+  edit();
+}
 addButton.addEventListener("click", function() {
     // Clone the last row to create a new row
     const lastRow = table.querySelector("tr:last-child");
@@ -44,4 +81,9 @@ function edit()
           });
         });
     }
+}
+
+function formatDateToYYYYMMDD(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-GB'); // Change 'en-GB' to your desired locale
 }

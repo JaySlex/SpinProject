@@ -1,3 +1,6 @@
+const basedURL = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
+const getevents = "?function=getevents";
+
 document.addEventListener("DOMContentLoaded", init);
 
 function populateTable(data) {
@@ -12,7 +15,7 @@ function populateTable(data) {
                 const cell = row.insertCell();
                 if (key === "date") {
                     cell.innerHTML = formatDateToYYYYMMDD(item[key]);
-                } else {
+                } else  {
                     cell.innerHTML = item[key];
                 }
             }
@@ -27,11 +30,11 @@ function formatDateToYYYYMMDD(dateString) {
 
 function init()
 {
-    fetch('https://script.google.com/macros/s/AKfycbw3ab-fNde3cjbjBUv9GQah43TfsZGChpvHEV8DzVNQ3m4OTWROVN6Ho7V4AJrFBz2v/exec?function=getevents')
+    fetch(basedURL+getevents)
     .then(res => res.text())
     .then(rep=>{
 
-        populateTable(JSON.parse(rep));
+        populateTable(JSON.parse(rep).reverse());
 
     })
 }

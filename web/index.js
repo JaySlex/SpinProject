@@ -1,12 +1,14 @@
-const base = `https://script.google.com/macros/s/AKfycbw3ab-fNde3cjbjBUv9GQah43TfsZGChpvHEV8DzVNQ3m4OTWROVN6Ho7V4AJrFBz2v/exec?function=getinfo`;
+const base = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
 
+const getInfo = "?function=getinfo";
+const getEvents = "?function=getevents";
 document.addEventListener("DOMContentLoaded", init);
 
 
 function init()
 {
     console.log("ready");
-    fetch(base)
+    fetch(base+getInfo)
     .then(res => res.text())
     .then(rep=>{
 
@@ -40,11 +42,11 @@ function init()
         document.getElementById("lose-bar").style.width = 100-winPercent+"%";
     })
 
-    fetch(`https://script.google.com/macros/s/AKfycbw3ab-fNde3cjbjBUv9GQah43TfsZGChpvHEV8DzVNQ3m4OTWROVN6Ho7V4AJrFBz2v/exec?function=getevents`)
+    fetch(base+ getEvents)
     .then(res => res.text())
     .then(rep=>{
 
-        populateTable(JSON.parse(rep));
+        populateTable(JSON.parse(rep).reverse());
 
     })
 }

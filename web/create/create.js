@@ -1,6 +1,6 @@
 var form = document.querySelector("form");
-
-const scriptURL = 'https://script.google.com/macros/s/AKfycbx4Svc87jYI81AVZIrlZw5XlIk_e4CPZUJ2bpdDnBmbVzgoyFoiC-Bqk0i52qz8ebfL/exec?function=addmatch'
+const basedURL = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
+const scriptURL = "?function=addmatch";
 
 var submitButton = document.querySelector(".green-button");
   
@@ -21,7 +21,7 @@ form.addEventListener("submit", function(event) {
     console.log("Result:", result);
     console.log("Date:", date);*/
 
-    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    fetch(basedURL+scriptURL, { method: 'POST', body: new FormData(form)})
     .then(() => 
     { 
         window.location.href = "../events/events.html";
