@@ -1,7 +1,8 @@
-const basedURL = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
+const basedURL = "https://script.google.com/macros/s/AKfycbxMS_5HMHuO8rt-u7wykYV9CCkDpcRmaPLLdFL8ypZZZMYvMDQ-qPaglaFvMnrL8eA/exec";
 const getevents = "?function=getevents";
 
 document.addEventListener("DOMContentLoaded", init);
+var user = "&user=";
 
 function populateTable(data) {
     const table = document.getElementById("myTable");
@@ -33,7 +34,18 @@ function formatDateToYYYYMMDD(dateString) {
 
 function init()
 {
-    fetch(basedURL+getevents)
+    if (localStorage.getItem('username')) {
+    // Data exists, you can retrieve it
+    var data = localStorage.getItem('username');
+    console.log('Data found in localStorage: ' + data);
+    user = user+data;
+    console.log(user);
+    }
+    else
+    {
+        window.location.href = "../register/register.html";
+    }
+    fetch(basedURL+getevents+user)
     .then(res => res.text())
     .then(rep=>{
 

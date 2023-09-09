@@ -1,17 +1,30 @@
-const base = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
+const base = "https://script.google.com/macros/s/AKfycbxMS_5HMHuO8rt-u7wykYV9CCkDpcRmaPLLdFL8ypZZZMYvMDQ-qPaglaFvMnrL8eA/exec";
 
 const getInfo = "?function=getinfo";
 
 const setinfo = "?function=setinfo";
 
-document.addEventListener("DOMContentLoaded", init);
+var user = "&user=";
 
+document.addEventListener("DOMContentLoaded", init);
+const logoff = document.getElementById("red-button");
 var form = document.querySelector("form");
 
 function init()
 {
+    if (localStorage.getItem('username')) {
+        // Data exists, you can retrieve it
+        var data = localStorage.getItem('username');
+        console.log('Data found in localStorage: ' + data);
+        user = user+data;
+        console.log(user);
+        }
+        else
+        {
+            window.location.href = "../register/register.html";
+        }
     console.log("ready");
-    fetch(base+getInfo)
+    fetch(base+getInfo+user)
     .then(res => res.text())
     .then(rep=>{
 
@@ -32,7 +45,13 @@ function init()
         if(obj["profile-picture"]){
             pp.value = obj["profile-picture"];
         }
-    })
+    });
+
+    logoff.addEventListener("click", function() {
+        // Clone the last row to create a new row
+        localStorage.removeItem('username');
+        window.location.href = "../login/login.html";
+    });
 }
 
 form.addEventListener("submit", function(event) {

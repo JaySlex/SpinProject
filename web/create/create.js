@@ -1,10 +1,20 @@
 var form = document.querySelector("form");
-const basedURL = "https://script.google.com/macros/s/AKfycbwcwf8Oo__dmRzHVTAj4Bl-J5VseHTUO3THyFVaGe9f-rA7zwRVSBZnkEvRnYF7Uwi8/exec";
+const basedURL = "https://script.google.com/macros/s/AKfycbxMS_5HMHuO8rt-u7wykYV9CCkDpcRmaPLLdFL8ypZZZMYvMDQ-qPaglaFvMnrL8eA/exec";
 const scriptURL = "?function=addmatch";
 
 var submitButton = document.querySelector(".green-button");
-  
-
+var user = "&user=";
+if (localStorage.getItem('username')) {
+    // Data exists, you can retrieve it
+    var data = localStorage.getItem('username');
+    console.log('Data found in localStorage: ' + data);
+    user = user+data;
+    console.log(user);
+    }
+    else
+    {
+        window.location.href = "../register/register.html";
+    }
 form.addEventListener("submit", function(event) {
     event.preventDefault();
   
@@ -21,7 +31,7 @@ form.addEventListener("submit", function(event) {
     console.log("Result:", result);
     console.log("Date:", date);*/
 
-    fetch(basedURL+scriptURL, { method: 'POST', body: new FormData(form)})
+    fetch(basedURL+scriptURL+user, { method: 'POST', body: new FormData(form)})
     .then(() => 
     { 
         window.location.href = "../events/events.html";

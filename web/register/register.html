@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nouveau combat</title>
+    <title>S'inscrire</title>
     <link rel="stylesheet" href="../style/main.css"/>
-    <link rel="stylesheet" href="create.css"/>
+    <link rel="stylesheet" href="register.css"/>
 </head>
 <body></body>
     <div class="app">
@@ -21,28 +21,27 @@
             <nav class="menu">
                 <a href="../index.html" class="menu-item">Aperçu</a>
                 <a href="../stats/stats.html" class="menu-item">Statistiques</a>
-                <a href="../events/events.html" class="menu-item is-active">Mes combats</a>
-                <a href="../settings/settings.html" class="menu-item">Paramètres</a>
+                <a href="../events/events.html" class="menu-item">Mes combats</a>
+                <a href="#" class="menu-item is-active">Paramètres</a>
             </nav>
         </aside>
         <div class="sidebar-background"></div>
 
         <main class="content">
+            
             <div class="form-container">
-                <h3>Créer un nouveau combat</h3>
+                <h3>S'inscrire</h3>
                 
                 <form target="../events/events.html" method="post" action="https://script.google.com/macros/s/AKfycbwYbC9O1Gjm9sjTtqLX7Gvkva_DEMt4ESg_cMUxkxW8cgWUR3uHcdXUNOfrvvbffoZd/exec">
-                    <label for="event-name">Nom de l'événement:</label>
-                    <input type="text" id="event-name" name="event-name" required>
+                    <label for="username">Nom:</label>
+                    <input type="text" id="username" placeholder="Entrez votre nom complet" name="username" required>
                     
-                    <label for="weight">Poid (kg):</label>
-                    <input type="number" id="weight" name="weight" required>
+                    <label for="weight">Poids (kg):</label>
+                    <input type="number" id="weight" placeholder="Entrez votre poids actuel" name="weight" required>
 
-                    <label for="color">Couleur:</label>
-                    <select id="color" name="color" required>
-                        <option value="Chong">Chong</option>
-                        <option value="Hong">Hong</option>
-                    </select>
+                    <label for="age">Âge:</label>
+                    <input type="number" id="age" placeholder="Entrez votre âge actuel" name="age" required>
+ 
                     <label for="belt">Ceinture:</label>
                     <select id="belt" name="belt" required>
                         <option value="Noir">Noir</option>
@@ -53,30 +52,22 @@
                         <option value="Blanche">Blanche</option>
                     </select>
 
-                    <label for="opponent">Adversaire:</label>
-                    <input type="text" id="opponent" name="opponent" required>
-                    
-                    <label for="result">Résultat:</label>
-                    <select id="result" name="result" required>
-                        <option value="Victoire">Victoire</option>
-                        <option value="Défaite">Défaite</option>
-                    </select>
-                  
-                    <label for="date">Date:</label>
-                    <input type="date" id="date" name="date" required>
-
+                    <label for="code">Code d'accès:</label>
+                    <input type="text" id="code" placeholder="Entrez le code d'accès" name="code" required>
                     <div class="button-container">
-                        <a href="../events/events.html">
-                            <button type="button" class="cancel-button">Annuler</button>
+                        <a href="../login/login.html">
+                            <button type="button" class="cancel-button">Déjà inscrit?</button>
                         </a>
-                        <button type="submit" class="green-button">Sauvegarder</button>
+                        <button type="submit" class="green-button">S'inscrire</button>
                     </div>
-
+                    
                 </form>
+                <p id="errorcode" style="display: none;">Un mauvais mot de passe ou le nom existe déjà</p>
             </div>
         </main>
     </div>
     <script src="../style/main.js"></script>
-    <script src="create.js"></script>
+    <script src="register.js"></script>
+
 </body>
 </html>

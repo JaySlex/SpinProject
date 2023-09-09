@@ -102,3 +102,27 @@ header {
 a {
   text-decoration: none; /* Remove the underline from links */
 }
+
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: aliceblue;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #00681a;
+  color: aliceblue;
+}
+::placeholder {
+  color: #ccc2c2; /* Change this to your desired placeholder color */
+}

@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paramètres</title>
+    <title>Ouvrir une session</title>
     <link rel="stylesheet" href="../style/main.css"/>
-    <link rel="stylesheet" href="settings.css"/>
+    <link rel="stylesheet" href="login.css"/>
 </head>
 <body></body>
     <div class="app">
@@ -30,45 +30,26 @@
         <main class="content">
             
             <div class="form-container">
-                <h3>Paramètres</h3>
+                <h3>Ouvrir une session</h3>
                 
                 <form target="../events/events.html" method="post" action="https://script.google.com/macros/s/AKfycbwYbC9O1Gjm9sjTtqLX7Gvkva_DEMt4ESg_cMUxkxW8cgWUR3uHcdXUNOfrvvbffoZd/exec">
                     <label for="username">Nom:</label>
                     <input type="text" id="username" placeholder="Entrez votre nom complet" name="username" required>
                     
-                    <label for="weight">Poids (kg):</label>
-                    <input type="number" id="weight" placeholder="Entrez votre poids actuel" name="weight" required>
-
-                    <label for="age">Âge:</label>
-                    <input type="number" id="age" placeholder="Entrez votre âge actuel" name="age" required>
- 
-                    <label for="belt">Ceinture:</label>
-                    <select id="belt" name="belt" required>
-                        <option value="Noir">Noir</option>
-                        <option value="Rouge">Rouge</option>
-                        <option value="Bleu">Bleu</option>
-                        <option value="Verte">Verte</option>
-                        <option value="Jaune">Jaune</option>
-                        <option value="Blanche">Blanche</option>
-                    </select>
-
-                    <label for="profile-picture">Image de profil (lien):</label>
-                    <input type="text" id="profile-picture" placeholder="ex : https://.../image.png" name="profile-picture">
-
                     <div class="button-container">
-                        <a href="../index.html">
-                            <button type="button" class="cancel-button">Annuler</button>
+                        <a href="../register/register.html">
+                            <button type="button" class="cancel-button">Pas de compte?</button>
                         </a>
-                        <button type="submit" class="green-button">Sauvegarder</button>
+                        <button type="submit" class="green-button">Ouvrir une session</button>
                     </div>
-
+                    
                 </form>
+                <p id="errorcode" style="display: none;">Le nom n'existe pas</p>
             </div>
-            <button class="red-button" id="red-button">Se déconnecter</button>
         </main>
     </div>
     <script src="../style/main.js"></script>
-    <script src="settings.js"></script>
+    <script src="login.js"></script>
 
 </body>
 </html>

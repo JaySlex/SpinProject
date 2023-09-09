@@ -4,7 +4,7 @@ const addButton = document.getElementById("new-round");
 const deleteMatchButton = document.getElementById("delete-match");
 
 document.addEventListener("DOMContentLoaded", init);
-const base = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
+const base = "https://script.google.com/macros/s/AKfycbzGjEJofU8oVp8aHrGkplA4ZqKJ_l_zTKxcQBiTcEvex5HITdP9YX3Kd0oxew1OKRk/exec";
 
 var urlParams = new URLSearchParams(window.location.search);
 var id = urlParams.get("id");
@@ -13,11 +13,23 @@ const getInfo = `?function=getmatch&id=${id}`;
 const addround = `?function=addround&id=${id}`;
 const modifyround = `?function=modifyround&id=${id}`;
 const deletematch = `?function=deletematch&id=${id}`;
+const setlink = `?function=setlink&id=${id}`;
 
+var user = "&user=";
 function init()
 {
-
-  fetch(base+getInfo)
+  if (localStorage.getItem('username')) {
+    // Data exists, you can retrieve it
+    var data = localStorage.getItem('username');
+    console.log('Data found in localStorage: ' + data);
+    user = user+data;
+    console.log(user);
+  }
+  else
+  {
+    window.location.href = "../register/register.html";
+  }
+  fetch(base+getInfo+user)
     .then(res => res.text())
     .then(rep=>{
 
@@ -47,6 +59,15 @@ function init()
         const date = document.getElementById("date");
         date.textContent = formatDateToYYYYMMDD(obj[0]["date"]);
 
+        const link = document.getElementById("link");
+        link.value = obj[0]["link"];
+        link.addEventListener("blur", function() {
+          // Handle the content change here for the editable cells
+          console.log("Link changed", link.value);
+          
+          changeLink(link.value);
+        });
+
         if(obj[0]["round"]){
           populateTable(JSON.parse(obj[0]["round"]));
         }
@@ -54,7 +75,7 @@ function init()
 
   addButton.addEventListener("click", function() {
     // Clone the last row to create a new row
-    fetch(base+addround, { method: 'POST'})
+    fetch(base+addround+user, { method: 'POST'})
     .then(res => res.text())
     .then(rep=>{
       window.location.reload();
@@ -63,7 +84,7 @@ function init()
 
   deleteMatchButton.addEventListener("click", function() {
     // Clone the last row to create a new row
-    fetch(base+deletematch, { method: 'POST'})
+    fetch(base+deletematch+user, { method: 'POST'})
     .then(res => res.text())
     .then(rep=>{
     }).catch(f=>{
@@ -121,13 +142,21 @@ function edit()
 
 function changeCell(id, cellContent)
 {
-  fetch(base+modifyround+ `&round=${id}&info=${cellContent}`, { method: 'POST'})
+  fetch(base+modifyround+ `&round=${id}&info=${cellContent}`+user, { method: 'POST'})
   .then(res => res.text())
   .then(rep=>{
     window.location.reload();
   });
 }
-
+function changeLink(cellContent)
+{
+  fetch(base+setlink+ `&link=${cellContent}`+user, { method: 'POST'})
+  .then(res => res.text())
+  .then(rep=>{
+    console.log(rep);
+    window.location.reload();
+  });
+}
 function formatDateToYYYYMMDD(dateString) {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-GB'); // Change 'en-GB' to your desired locale

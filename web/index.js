@@ -1,14 +1,25 @@
-const base = "https://script.google.com/macros/s/AKfycbwaQItyp4u-__LYJBTjO4ZwM6M_wW26AgF5bUezfvJ4CcrWs2YnYRZ7jT3l99nGwFSP/exec";
+const base = "https://script.google.com/macros/s/AKfycbxMS_5HMHuO8rt-u7wykYV9CCkDpcRmaPLLdFL8ypZZZMYvMDQ-qPaglaFvMnrL8eA/exec";
 
 const getInfo = "?function=getinfo";
 const getEvents = "?function=getevents";
 document.addEventListener("DOMContentLoaded", init);
 
-
+var user = "&user=";
 function init()
 {
+    if (localStorage.getItem('username')) {
+        // Data exists, you can retrieve it
+        var data = localStorage.getItem('username');
+        console.log('Data found in localStorage: ' + data);
+        user = user+data;
+        console.log(user);
+    }else
+    {
+        window.location.href = "./register/register.html";
+    }
+
     console.log("ready");
-    fetch(base+getInfo)
+    fetch(base+getInfo+user)
     .then(res => res.text())
     .then(rep=>{
 
@@ -17,21 +28,21 @@ function init()
         profilName.textContent = obj["name"];
 
         const weight = document.getElementById("weight");
-        weight.textContent = "Weight: " + obj["weight"] + "kg";
+        weight.textContent = "Poids: " + obj["weight"] + "kg";
 
         const age = document.getElementById("age");
-        age.textContent = "Age: " + obj["age"];
+        age.textContent = "Âge: " + obj["age"];
 
         const belt = document.getElementById("belt");
-        belt.textContent = "Belt: " + obj["belt"];
+        belt.textContent = "Ceinture: " + obj["belt"];
 
         const wins  = parseInt(obj["win"]);
         const losses  = parseInt(obj["loss"]);
 
         const winText = document.getElementById("win");
-        winText.textContent = "Win(s): " + wins;
+        winText.textContent = "Victoires: " + wins;
         const lossText = document.getElementById("loss");
-        lossText.textContent = "Loss(es): " + losses;
+        lossText.textContent = "Défaites: " + losses;
 
         const ratio = wins / (wins + losses);
 
@@ -47,7 +58,7 @@ function init()
         }
     })
 
-    fetch(base+ getEvents)
+    fetch(base+ getEvents+user)
     .then(res => res.text())
     .then(rep=>{
 
