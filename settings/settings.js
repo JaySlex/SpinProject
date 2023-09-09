@@ -70,7 +70,7 @@ form.addEventListener("submit", function(event) {
     console.log("Result:", result);
     console.log("Date:", date);*/
 
-    fetch(base+setinfo, { method: 'POST', body: new FormData(form)})
+    fetch(base+setinfo+user, { method: 'POST', body: new FormData(form)})
     .then(() => 
     { 
         window.location.href = "../index.html";
