@@ -36,7 +36,7 @@ function init()
         const obj = JSON.parse(rep);
         console.log(obj);
         const fightTitle = document.getElementById("fightid");
-        fightTitle.textContent = "Match #"+(obj[0].id-3);
+        fightTitle.textContent = "Combat #"+(obj[0].id-3);
 
         const eventName = document.getElementById("event-name");
         eventName.textContent = obj[0]["name"];
